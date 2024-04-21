@@ -29,9 +29,9 @@ SECRET_KEY =\
 DEBUG = True
 
 
-base_url = 'https://rafaelbuzatt-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01'
+base = 'https://rafaelbuzatt-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01'
 url_suffix = '.proxy.cognitiveclass.ai'
-app_url = base_url + url_suffix
+app_url = base + url_suffix
 ALLOWED_HOSTS = [
     'localhost',
     app_url
