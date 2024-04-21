@@ -28,14 +28,16 @@ SECRET_KEY =\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS= [
+
+base_url = 'https://rafaelbuzatt-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01'
+url_suffix = '.proxy.cognitiveclass.ai'
+app_url = base_url + url_suffix
+ALLOWED_HOSTS = [
     'localhost',
-    'https://rafaelbuzatt-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/'
+    app_url
 ]
 
-CSRF_TRUSTED_ORIGINS= [
-    'https://rafaelbuzatt-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
-]
+CSRF_TRUSTED_ORIGINS = [app_url]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [],
@@ -97,22 +99,24 @@ DATABASES = {
     }
 }
 
+auth_pswd = 'django.contrib.auth.password_validation'
+user_attr = 'UserAttributeSimilarityValidator'
+min_len = 'MinimumLengthValidator'
+common_pswd = 'CommonPasswordValidator'
+numeric_pswd = 'NumericPasswordValidator'
+
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME':
-        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': f'{auth_pswd}.{user_attr}',
     },
     {
-        'NAME':
-        'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': f'{auth_pswd}.{min_len}',
     },
     {
-        'NAME':
-        'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': f'{auth_pswd}.{common_pswd}',
     },
     {
-        'NAME':
-        'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': f'{auth_pswd}.{numeric_pswd}',
     },
 ]
 
